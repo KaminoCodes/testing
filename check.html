@@ -1,0 +1,29 @@
+<head>
+    <script>
+        function onLoad(){
+
+    const queryString = window.location.search;
+
+const urlParams = new URLSearchParams(queryString);
+
+const uuid = urlParams.get('uuid')
+
+fetch('https://api.namemc.com/server/play.dupetime.cf/likes?profile=' + uuid)
+            .then((resp) => resp.json())
+            .then(function(data) {
+                let allInfo = data;
+                if(data === 'true'){
+                    document.getElementById("ty").style.visibility = 'block'
+                    document.getElementById("pls").style.visibility = 'none'
+                }else if(data === 'false'){
+                    document.getElementById("ty").style.visibility = 'none'
+                    document.getElementById("pls").style.visibility = 'block'
+                }else return;
+            })
+        }
+    </script>
+</head>
+<body onload="onLoad()">
+    <h1 style="color: green; visibility: none;" id="ty">Thanks for liking the server on <a href="https://namemc.com/server/play.dupetime.cf">NameMC</a>!</h1>
+    <h1 style="color: red; visibility: none;" id="pls">Please consider liking the server on <a href="https://namemc.com/server/play.dupetime.cf">NameMC</a>!</h1>
+</body>

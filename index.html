@@ -1,0 +1,28 @@
+<head>
+    <title>DupeTime Test</title>
+</head>
+<body>
+    <center>
+        <h1>Please enter your Minecraft Username</h1>
+        <input type="text" id="username"> <button onclick="send()">Submit</button>
+    </center>
+
+    <script>
+        function send(){
+            const user = document.getElementById("username").value;
+
+        const url = 'https://api.mojang.com/users/profiles/minecraft/' + user;
+
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            let nameandid = data;
+            let uuid = nameandid.id
+            window.location.replace('/check?uuid=' + uuid)
+            .catch(function(error) {
+            console.log(error);
+            });
+});
+        }
+    </script>
+</body>
